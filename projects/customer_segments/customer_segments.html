@@ -18283,7 +18283,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -18302,7 +18302,11 @@ Once you have performed this implementation, the dataset will be stored in the v
     <span class="c1"># Display the outliers</span>
     <span class="k">print</span> <span class="s2">&quot;Data points considered outliers for the feature &#39;{}&#39;:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="o">~</span><span class="p">((</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="n">step</span><span class="p">))])</span>
-    <span class="n">idx</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="o">~</span><span class="p">((</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="n">step</span><span class="p">))]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">tlist</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="o">~</span><span class="p">((</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="n">step</span><span class="p">))]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">outlier</span> <span class="ow">in</span> <span class="n">tlist</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">outlier</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;multi outliers </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">outlier</span>
+        <span class="n">idx</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">outlier</span><span class="p">)</span>
     
 <span class="c1"># OPTIONAL: Select the indices for data points you wish to remove</span>
 <span class="k">print</span> <span class="n">idx</span>
@@ -18680,7 +18684,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Frozen&#39;:
+<pre>multi outliers 154
+Data points considered outliers for the feature &#39;Frozen&#39;:
 </pre>
 </div>
 </div>
@@ -18822,7 +18827,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Detergents_Paper&#39;:
+<pre>multi outliers 65
+Data points considered outliers for the feature &#39;Detergents_Paper&#39;:
 </pre>
 </div>
 </div>
@@ -18892,7 +18898,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Delicatessen&#39;:
+<pre>multi outliers 75
+Data points considered outliers for the feature &#39;Delicatessen&#39;:
 </pre>
 </div>
 </div>
@@ -19070,7 +19077,10 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>set([128, 193, 264, 137, 142, 145, 154, 412, 285, 161, 420, 38, 171, 429, 175, 304, 305, 439, 184, 57, 187, 65, 66, 203, 325, 289, 75, 81, 338, 86, 343, 218, 95, 96, 353, 98, 355, 356, 357, 233, 109, 183])
+<pre>multi outliers 128
+multi outliers 66
+multi outliers 154
+set([128, 193, 264, 137, 142, 145, 154, 412, 285, 161, 420, 38, 171, 429, 175, 304, 305, 439, 184, 57, 187, 65, 66, 203, 325, 289, 75, 81, 338, 86, 343, 218, 95, 96, 353, 98, 355, 356, 357, 233, 109, 183])
 </pre>
 </div>
 </div>
@@ -19092,7 +19102,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong> Yes, sample 75 is outlier for Grocery and Detergents_Paper. I think removing these data points should consider case by case. If a point is an outlier for multiple features, it's spending a lot of money on many things. Removing them will make us lose the important information. We might want to estimate those customer's spending habits as well. However, since only few points are in those sets, I think we are ok for this dataset.</p>
+<p><strong>Answer:</strong> Yes, sample 65, 75, 128, 66, 154 are outliers for more than one feature. I think removing these data points should consider case by case. If a point is an outlier for multiple features, it's spending a lot of money on many things. Removing them will make us lose the important information. We might want to estimate those customer's spending habits as well. However, since only few points are in those sets, I think we are ok for this dataset.</p>
 
 </div>
 </div>
@@ -19749,7 +19759,7 @@ EREREZEI/h8Tj6NBmnyQUQAAAABJRU5ErkJggg==
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x116a28ad0&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1092e1b90&gt;</pre>
 </div>
 
 </div>
@@ -20842,7 +20852,7 @@ AAAAYiGgBAAAAADEQkAJAAAAAIiFgBIAAAAAEMv/BxddWseZ2LOYAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GMM</span>
@@ -21009,7 +21019,7 @@ AAAAYiGgBAAAAADEQkAJAAAAAIiFgBIAAAAAEMv/BxddWseZ2LOYAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the results of the clustering from implementation</span>
@@ -21647,7 +21657,7 @@ AAAAACrn/wM2/Mep0LWytwAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Inverse transform the centers</span>
@@ -21750,8 +21760,8 @@ AAAAACrn/wM2/Mep0LWytwAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Cluster 0: has more Fresh and Frozen purchase, mostly represent cafe or restaurants.</li>
-<li>Cluster 1: has more Milk, Grocery, Detergents_Paper and Delicatessen purchase, would represent supermarkets or store.</li>
+<li>Cluster 0: both Fresh and Frozen are above 50% of samples, Detergents_Paper and Delicatessen are below 50% of the samples, mostly represent cafe or restaurants.</li>
+<li>Cluster 1: all features are above or close to 50% of samples, Grocery and Detergents_Paper are close or above 75%, would represent supermarkets or store because they sell various kinds of goods.</li>
 </ul>
 
 </div>
@@ -21769,7 +21779,7 @@ AAAAACrn/wM2/Mep0LWytwAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the predictions</span>
@@ -21808,10 +21818,9 @@ Sample point 2 predicted to be in Cluster 0
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Sample 0: I thought it would be cafe/restaurants, but model predict to be supermarket.</li>
-<li>Sample 1: Align with my prediction to be retailers or supermarket.</li>
-<li>Sample 2: I predict to be a household, the model predict to be a cafe/restaurant. </li>
-<li>Overall: 1 is correct, 2 is somewhat close, because a household and restaurant might have similar buying pattern. 0 is not as predicted.</li>
+<li>Sample 0 and 1 are close to Cluster 1 centers</li>
+<li>Sample 2 is close to Cluster 0 centers</li>
+<li>Predictions are consistent with my observation.</li>
 </ul>
 
 </div>
@@ -21849,6 +21858,7 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> I think this change will affects the restaurant/cafe category mostly. Because their need for fresh and grocery will be daily, changing to every other days will impact their business. For supermarket or retailer category, the impact won't be criticle. Their inventory stock will be ok for 3d delivery per week.</p>
+<p>However, the company can run A/B tests to verify the predictions. By picking some amount of samples from each cluster, and run the experiment and evaluate the feedback separately, it will help the company find a trend on each customer category. With the experiment results and feedback, the company can also educate the other customers for the benefit of the change and then execute the change accordingly, if there's any, or cancel the change if the results are bad from both customers.</p>
 
 </div>
 </div>
@@ -21891,7 +21901,7 @@ We can use semi-supervised learning to do this.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the clustering results based on &#39;Channel&#39; data</span>
