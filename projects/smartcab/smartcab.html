@@ -13162,7 +13162,7 @@ RU5ErkJggg==
 </li>
 <li>Not appropriate features:<ul>
 <li>inputs right: If the light is red, the smartcab can only turn right, so the right car does not impact the decision. If the light is green, it also has no impact on smartcab's decision</li>
-<li>deadline: Won't impact safety. </li>
+<li>deadline: Adding it will improve the efficiency but also hurt the safety. Since the smartcab will get reward to reach to destination ontime, it might break the rule at some states. This is what we need to avoid. The other thing is adding the deadline will significantly increase the QTable space, since we have to multiply the current space by the destination value.</li>
 </ul>
 </li>
 </ul>
